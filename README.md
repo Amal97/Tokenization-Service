@@ -82,6 +82,17 @@ docker run -p 3000:3000 tokenization-service
 ```
 The service will be available at `http://localhost:3000`.
 
+## Assumptions & Design Decisions
+
+- **Input Format**: Assumes account numbers are strings. No specific validation (length, regex) is applied to the content.
+- **Token Format**: Tokens are 32-character strings, generated from 24 random bytes and Base64 URL encoded.
+- **Persistence**: Uses an in-memory H2 database. Data is not persisted across service restarts.
+- **Storage Security**: Account numbers and tokens are stored in **plain text** within the H2 database; no secure vault is utilized in this implementation.
+- **Idempotency**: Tokenizing the same account number multiple times will always return the same token.
+- **Collision Strategy**: Includes a retry mechanism (up to 5 attempts) to handle potential token generation collisions.
+- **Error Handling**: Detokenizing a non-existent token returns `null` in the response list, allowing batch operations to continue.
+- **Security**: Uses `SecureRandom` for cryptographically strong token generation. Not using encryption as it is not required for this use case.
+
 ## Implementation Details
 
 - **Database**: H2 (In-memory)
