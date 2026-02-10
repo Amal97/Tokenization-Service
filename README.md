@@ -69,6 +69,19 @@ The service will be available at `http://localhost:3000`.
 ./mvnw test
 ```
 
+## Docker
+
+### Build the Image
+```bash
+docker build -t tokenization-service .
+```
+
+### Run the Container
+```bash
+docker run -p 3000:3000 tokenization-service
+```
+The service will be available at `http://localhost:3000`.
+
 ## Implementation Details
 
 - **Database**: H2 (In-memory)
