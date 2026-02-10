@@ -1,0 +1,27 @@
+### Generate Tokens
+POST http://localhost:3000/tokenize
+Content-Type: application/json
+
+[
+  "123456789",
+  "987654321"
+]
+
+### Detokenize
+POST http://localhost:3000/detokenize
+Content-Type: application/json
+
+[
+  "GRH84h8coQHwQGFqLakbBsY-cXN_aCAX",
+  "fzgxtDoLBhdcnsiao_JyIvw6ai726CUT"
+]
+
+### Detokenize with incorrect token
+POST http://localhost:3000/detokenize
+Content-Type: application/json
+
+[
+  "GRH84h8coQHwQGFqLakbBsY-cXN_aCAX",
+  "fzgxtDoLBhdcnsiao_JyIvw6ai726CUT",
+  "qy4FzokvVm8Jc75YM1-NeE_XOesE7g74"
+]
